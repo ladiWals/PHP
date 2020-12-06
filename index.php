@@ -1,12 +1,9 @@
-<DOCTYPE html>
-<html lang="ru">
-	<head>
-		<title>Простейший PHP-скрипт</title>	
-		<meta charset="utf-8">
-	</head>	
-	<body>
-		<?php
-		echo "Hello, world!";
-		?>
-	</body>
-</html>
+<?php
+
+require __DIR__ . '/vendor/autoload.php';
+
+// Файл не включается на прямую
+// Он загрузится автоматически благодаря автозагрузке
+use Hexlet\Php\Runner;
+
+print_r(Runner\run());
