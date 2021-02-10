@@ -1,9 +1,11 @@
 <?php
+?>
 
-require __DIR__ . '/vendor/autoload.php';
+<!DOCTYPE html>
 
-// Файл не включается на прямую
-// Он загрузится автоматически благодаря автозагрузке
-use Hexlet\Php\Runner;
+<head>
+</head>
 
-print_r(Runner\run());
+<body>
+	<h1>Здесь будет всякая белиберда на основе PHP</h1>
+</body>
