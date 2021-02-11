@@ -1,0 +1,18 @@
+body {
+	font-family: Arial, cursive;
+	color: #0d2454;
+	background-color: #78bbbf;
+	text-align: center;
+}
+
+h1 {
+	text-align: center;
+}
+
+ul {
+	list-style-type: none;
+}
+
+a {
+	font-size: 24px;
+}
