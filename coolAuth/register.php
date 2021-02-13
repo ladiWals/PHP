@@ -2,27 +2,16 @@
 
 // Страница регситрации нового пользователя
 
+// Подключение к БД
+$link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));
 
-# Соединямся с БД
-
-mysql_connect("localhost", "myhost", "myhost");
-
-mysql_select_db("testtable");
-
-
-
-if(isset($_POST['submit']))
-
-{
+if(isset($_POST['submit'])) {
 
     $err = array();
 
 
-    # проверям логин
-
-    if(!preg_match("/^[a-zA-Z0-9]+$/",$_POST['login']))
-
-    {
+    // проверям логин
+    if(!preg_match("/^[a-zA-Z0-9]+$/",$_POST['login'])) {
 
         $err[] = "Логин может состоять только из букв английского алфавита и цифр";
 
@@ -30,9 +19,7 @@ if(isset($_POST['submit']))
 
     
 
-    if(strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30)
-
-    {
+    if(strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30) {
 
         $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
 
@@ -40,69 +27,48 @@ if(isset($_POST['submit']))
 
     
 
-    # проверяем, не сущестует ли пользователя с таким именем
-
+    // проверяем, не сущестует ли пользователя с таким именем
     $query = mysql_query("SELECT COUNT(user_id) FROM users WHERE user_login='".mysql_real_escape_string($_POST['login'])."'");
 
-    if(mysql_result($query, 0) > 0)
-
-    {
-
+    if(mysql_result($query, 0) > 0) {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
-
     }
 
     
 
-    # Если нет ошибок, то добавляем в БД нового пользователя
-
-    if(count($err) == 0)
-
-    {
-
-        
+    // Если нет ошибок, то добавляем в БД нового пользователя
+    if(count($err) == 0) {
         $login = $_POST['login'];
 
-        
-
-        # Убераем лишние пробелы и делаем двойное шифрование
-
+        // Убираем лишние пробелы и делаем двойное шифрование
         $password = md5(md5(trim($_POST['password'])));
-
-        
 
         mysql_query("INSERT INTO users SET user_login='".$login."', user_password='".$password."'");
 
         header("Location: login.php"); exit();
-
-    }
-
-    else
-
-    {
-
+    } else {
         print "<b>При регистрации произошли следующие ошибки:</b><br>";
 
-        foreach($err AS $error)
-
-        {
-
+        foreach($err AS $error) {
             print $error."<br>";
-
         }
-
     }
-
 }
-
 ?>
 
-<form method="POST">
+<!DOCTYPE html>
 
-Логин <input name="login" type="text"><br>
+<head>
+    <title></title>
+    <link rel="stylesheet" href="/styles.css">
+</head>
 
-Пароль <input name="password" type="password"><br>
+<body>
 
-<input name="submit" type="submit" value="Зарегистрироваться">
+    <form method="POST">
+        Логин <input name="login" type="text"><br>
+        Пароль <input name="password" type="password"><br>
+        <input name="submit" type="submit" value="Зарегистрироваться">
+    </form>
 
-</form>
+</body>
