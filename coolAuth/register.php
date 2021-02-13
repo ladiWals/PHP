@@ -9,15 +9,12 @@ if(isset($_POST['submit'])) {
 
     $err = array();
 
-
-    // проверям логин
+    // Проверям логин
     if(!preg_match("/^[a-zA-Z0-9]+$/",$_POST['login'])) {
 
         $err[] = "Логин может состоять только из букв английского алфавита и цифр";
 
     }
-
-    
 
     if(strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30) {
 
@@ -25,16 +22,12 @@ if(isset($_POST['submit'])) {
 
     }
 
-    
-
-    // проверяем, не сущестует ли пользователя с таким именем
+    // Проверяем, не сущестует ли пользователя с таким именем
     $query = mysql_query("SELECT COUNT(user_id) FROM users WHERE user_login='".mysql_real_escape_string($_POST['login'])."'");
 
     if(mysql_result($query, 0) > 0) {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
     }
-
-    
 
     // Если нет ошибок, то добавляем в БД нового пользователя
     if(count($err) == 0) {
