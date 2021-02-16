@@ -60,7 +60,7 @@ if(isset($_POST['submit'])) {
 
 <head>
     <title>Вход</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/coolAuth/styles.css">
 </head>
 
 <body>

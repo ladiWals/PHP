@@ -53,7 +53,7 @@ mysqli_close($link);
 
 <head>
     <title>Регистрация</title>
-    <link rel="stylesheet" href="/styles.css">
+    <link rel="stylesheet" href="/coolAuth//styles.css">
 </head>
 
 <body>
@@ -64,13 +64,15 @@ mysqli_close($link);
         <input name="submit" type="submit" value="Зарегистрироваться">
     </form>
 
-    <?php
-    if(count($err) != 0) { ?>
-        <ul>При регистрации произошли следующие ошибки:</ul>
+    <div class="error">
         <?php
-        foreach($err as $error) { ?>
-            <li><?=$error?></li>
-        <?php }
-    } ?>
+        if(count($err) != 0) { ?>
+            <ul>При регистрации произошли следующие ошибки:</ul>
+            <?php
+            foreach($err as $error) { ?>
+                <li><?=$error?></li>
+            <?php }
+        } ?>
+    </div>
 
 </body>
