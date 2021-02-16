@@ -7,40 +7,43 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/coolAuth/connection.php');
 // Подключение к БД
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));
 
+// Если пришла форма
 if(isset($_POST['submit'])) {
 
     // Объявляю массив ошибок
     $err = array();
 
-    // Проверям логин
-    if(!preg_match("/^[a-zA-Z0-9]+$/", $_POST['login'])) {
+    // Достаю логин из POST
+    $login = $_POST['login'];
+
+    // Проверям логина на допустимость символов
+    if(!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
         $err[] = "Логин может состоять только из букв английского алфавита и цифр";
     }
 
-    if(strlen($_POST['login']) < 3 or strlen($_POST['login']) > 30) {
+    // Проверка логина на длину
+    if(strlen($_POST['login']) < 3 or strlen($login) > 30) {
         $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
     }
 
     // Проверяем, не сущестует ли пользователя с таким именем
-    $query = mysqli_query($link, "SELECT COUNT(id) FROM users WHERE login='" . mysqli_real_escape_string($_POST['login']) . "'");
+    $query = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(id) FROM users WHERE login='" . mysqli_real_escape_string($link, $login) . "'"));
 
-    if(mysql_result($query, 0) > 0) {
+    if($query["COUNT(id)"] != '0') {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
     }
 
     // Если нет ошибок, то добавляем в БД нового пользователя
     if(count($err) == 0) {
-        $login = $_POST['login'];
 
         // Убираем лишние пробелы и делаем двойное md5-шифрование
         $password = md5(md5(trim($_POST['password'])));
 
         mysqli_query($link, "INSERT INTO users SET login='" . $login . "', password='" . $password . "'");
 
-        header("Location: login.php"); exit();
+        // header("Location: login.php"); exit();
     } else {
         print "<b>При регистрации произошли следующие ошибки:</b><br>";
-
         foreach($err as $error) {
             print $error . "<br>";
         }
