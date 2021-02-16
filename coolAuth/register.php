@@ -58,21 +58,23 @@ mysqli_close($link);
 
 <body>
 
-    <form method="POST">
-        Логин <input name="login" type="text"><br>
-        Пароль <input name="password" type="password"><br>
-        <input name="submit" type="submit" value="Зарегистрироваться">
-    </form>
+    <div class="window">
+        <form method="POST">
+            <input name="login" placeholder="Логин" type="text"><br>
+            <input name="password" placeholder="Пароль" type="password"><br>
+            <input name="submit" type="submit" value="Зарегистрироваться">
+        </form>
 
-    <div class="error">
-        <?php
-        if(count($err) != 0) { ?>
-            <ul>При регистрации произошли следующие ошибки:</ul>
+        <div class="error">
             <?php
-            foreach($err as $error) { ?>
-                <li><?=$error?></li>
-            <?php }
-        } ?>
+            if(count($err) != 0) { ?>
+                <ul>При регистрации произошли следующие ошибки:</ul>
+                <?php
+                foreach($err as $error) { ?>
+                    <li><?=$error?></li>
+                <?php }
+            } ?>
+        </div>
     </div>
 
 </body>

@@ -1,9 +1,23 @@
 body {
 	font-family: Arial, cursive;
+	font-size: 20px;
 	color: #0d2454;
 	background-color: #78bbbf;
 }
 
 .error {
-	color: #7a2727;
+	color: #9f2727;
+}
+
+.window {
+	border-radius: 10px;
+	background-color: white; 
+	margin-left: 35%;
+	margin-right: 35%;
+	margin-top: 300px;
+}
+
+input {
+	margin: 10px;
+	font-size: 22px;
 }
