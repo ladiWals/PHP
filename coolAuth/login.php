@@ -2,7 +2,7 @@
 
 // Страница авторизации
 
-require_once('/connection.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/coolAuth/connection.php');
 
 // Функция для генерации случайной строки
 function generateCode($length=6) {

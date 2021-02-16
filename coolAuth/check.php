@@ -2,7 +2,7 @@
 
 // Скрипт проверки
 
-require_once('/connection.php');
+require_once('/coolAuth//connection.php');
 
 // Соединямся с БД
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));

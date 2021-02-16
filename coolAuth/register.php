@@ -2,7 +2,7 @@
 
 // Страница регситрации нового пользователя
 
-require_once('/connection.php');
+require_once($_SERVER['DOCUMENT_ROOT'] . '/coolAuth/connection.php');
 
 // Подключение к БД
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));

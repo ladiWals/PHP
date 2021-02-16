@@ -12,8 +12,8 @@
 <body>
 	<h1></h1>
 	<ul>
-		<li><a href="/coolAuth/login.php">Регистрация</a></li>
-		<li><a href="/coolAuth/register.php">Вход</a></li>
+		<li><a href="/coolAuth/register.php">Регистрация</a></li>
+		<li><a href="/coolAuth/login.php">Вход</a></li>
 		<li><a href="/">Главная</a></li>
 	</ul>
 </body>
