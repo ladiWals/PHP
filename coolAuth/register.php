@@ -42,12 +42,7 @@ if(isset($_POST['submit'])) {
         mysqli_query($link, "INSERT INTO users SET login='" . $login . "', password='" . $password . "'");
 
         // header("Location: login.php"); exit();
-    } else {
-        print "<b>При регистрации произошли следующие ошибки:</b><br>";
-        foreach($err as $error) {
-            print $error . "<br>";
-        }
-    }
+    } 
 }
 
 // Закрываем соединение с БД
@@ -68,5 +63,14 @@ mysqli_close($link);
         Пароль <input name="password" type="password"><br>
         <input name="submit" type="submit" value="Зарегистрироваться">
     </form>
+
+    <?php
+    if(count($err) != 0) { ?>
+        <ul>При регистрации произошли следующие ошибки:</ul>
+        <?php
+        foreach($err as $error) { ?>
+            <li><?=$error?></li>
+        <?php }
+    } ?>
 
 </body>
