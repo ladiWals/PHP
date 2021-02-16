@@ -39,9 +39,7 @@ if(isset($_POST['submit'])) {
         // Убираем лишние пробелы и делаем двойное md5-шифрование
         $password = md5(md5(trim($_POST['password'])));
 
-        mysqli_query($link, "INSERT INTO users SET login='" . $login . "', password='" . $password . "'");
-
-        // header("Location: login.php"); exit();
+        $succReg = mysqli_query($link, "INSERT INTO users SET login='" . $login . "', password='" . $password . "'");
     } 
 }
 
@@ -74,6 +72,17 @@ mysqli_close($link);
                     <li><?=$error?></li>
                 <?php }
             } ?>
+        </div>
+
+        <div class="success">
+            <?php
+            if($succReg == true) {
+                echo 'Вы успешно зарегистрировались!<br>';
+                echo 'Переход на страницу входа через 2 секунды';
+                header("Refresh: 2; url=login.php"); 
+                exit();
+            }
+            ?>
         </div>
     </div>
 

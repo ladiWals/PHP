@@ -6,12 +6,17 @@ body {
 }
 
 .error {
-	color: #9f2727;
+	color: red;
+}
+
+.success {
+	color: green;
+	padding: 5px;
 }
 
 .window {
 	border-radius: 10px;
-	background-color: white; 
+	background-color: #eee; 
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: 300px;
