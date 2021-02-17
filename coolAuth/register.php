@@ -8,7 +8,7 @@ require_once($_SERVER['DOCUMENT_ROOT'] . '/coolAuth/connection.php');
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));
 
 // Если пришла форма
-if(isset($_POST['submit'])) {
+if (isset($_POST['submit'])) {
 
     // Объявляю массив ошибок
     $err = array();
@@ -17,24 +17,24 @@ if(isset($_POST['submit'])) {
     $login = $_POST['login'];
 
     // Проверям логина на допустимость символов
-    if(!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
+    if (!preg_match("/^[a-zA-Z0-9]+$/", $login)) {
         $err[] = "Логин может состоять только из букв английского алфавита и цифр";
     }
 
     // Проверка логина на длину
-    if(strlen($_POST['login']) < 3 or strlen($login) > 30) {
+    if (strlen($_POST['login']) < 3 or strlen($login) > 30) {
         $err[] = "Логин должен быть не меньше 3-х символов и не больше 30";
     }
 
     // Проверяем, не сущестует ли пользователя с таким именем
     $query = mysqli_fetch_assoc(mysqli_query($link, "SELECT COUNT(id) FROM users WHERE login='" . mysqli_real_escape_string($link, $login) . "'"));
 
-    if($query["COUNT(id)"] != '0') {
+    if ($query["COUNT(id)"] != '0') {
         $err[] = "Пользователь с таким логином уже существует в базе данных";
     }
 
     // Если нет ошибок, то добавляем в БД нового пользователя
-    if(count($err) == 0) {
+    if (count($err) == 0) {
 
         // Убираем лишние пробелы и делаем двойное md5-шифрование
         $password = md5(md5(trim($_POST['password'])));
@@ -44,7 +44,7 @@ if(isset($_POST['submit'])) {
 }
 
 // Закрываем соединение с БД
-mysqli_close($link);
+mysqli_close ($link);
 ?>
 
 <!DOCTYPE html>
@@ -65,10 +65,10 @@ mysqli_close($link);
 
         <div class="error">
             <?php
-            if(count($err) != 0) { ?>
+            if (count($err) != 0) { ?>
                 <ul>При регистрации произошли следующие ошибки:</ul>
                 <?php
-                foreach($err as $error) { ?>
+                foreach ($err as $error) { ?>
                     <li><?=$error?></li>
                 <?php }
             } ?>
@@ -76,10 +76,10 @@ mysqli_close($link);
 
         <div class="success">
             <?php
-            if($succReg == true) {
+            if ($succReg == true) {
                 echo 'Вы успешно зарегистрировались!<br>';
                 echo 'Переход на страницу входа через 2 секунды';
-                header("Refresh: 2; url=login.php"); 
+                header("Refresh: 2; url=/coolAuth/login.php"); 
                 exit();
             }
             ?>

@@ -2,6 +2,8 @@
 
 // Страница авторизации
 
+$error = false;
+
 require_once($_SERVER['DOCUMENT_ROOT'] . '/coolAuth/connection.php');
 
 // Функция для генерации случайной строки
@@ -22,6 +24,7 @@ $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка 
 
 // Когда пришла форма
 if(isset($_POST['submit'])) {
+
     // Вытаскиваем из БД запись, у которой логин равняеться введенному
     $query = mysqli_query($link, "SELECT id, password FROM users WHERE login='" . mysqli_real_escape_string($link, $_POST['login']) . "' LIMIT 1");
 
@@ -48,10 +51,11 @@ if(isset($_POST['submit'])) {
         setcookie("hash", $hash, time() + 60 * 60 * 24 * 30);
 
         // Переадресовываем браузер на страницу проверки нашего скрипта
-        header("Location: check.php"); exit();
+        // header("url=/coolAuth/check.php"); 
+        // exit();
 
     } else {
-        print ("Вы ввели неправильный логин/пароль");
+        $error = true;
     }
 }
 ?>
@@ -65,11 +69,18 @@ if(isset($_POST['submit'])) {
 
 <body>
 
-<form method="POST">
-    Логин <input name="login" type="text"><br>
-    Пароль <input name="password" type="password"><br>
-    Не прикреплять к IP(не безопасно) <input type="checkbox" name="not_attach_ip"><br>
-    <input name="submit" type="submit" value="Войти">
-</form>
+<div class="window">
+
+    <form method="POST">
+        <input name="login" placeholder="Логин" type="text"><br>
+        <input name="password" placeholder="Пароль" type="password"><br>
+        <span>Не прикреплять к IP(не безопасно)</span> <input type="checkbox" name="not_attach_ip"><br>
+        <input name="submit" type="submit" value="Войти">
+    </form>
+
+    <div class="error">
+        <?=$error ? "Вы ввели неправильный логин/пароль" : ''?>
+    </div>
+</div>
 
 </body>

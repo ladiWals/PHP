@@ -6,6 +6,7 @@ body {
 }
 
 .error {
+	padding: 10px;
 	color: red;
 }
 
@@ -15,8 +16,9 @@ body {
 }
 
 .window {
+
 	border-radius: 10px;
-	background-color: #eee; 
+	background-color: #eee;
 	margin-left: 35%;
 	margin-right: 35%;
 	margin-top: 300px;
@@ -25,4 +27,8 @@ body {
 input {
 	margin: 10px;
 	font-size: 22px;
+}
+
+span {
+	margin: 10px;
 }
