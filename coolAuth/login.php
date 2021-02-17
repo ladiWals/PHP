@@ -48,12 +48,10 @@ if(isset($_POST['submit'])) {
         mysqli_query($link, "UPDATE users SET hash='" . $hash . "' " . $insip . " WHERE id='" . $data['id'] . "'");
 
         // Ставим куки
-        setcookie("id", $data['user_id'], time() + 60 * 60 * 24 * 30);
+        setcookie("id", $data['id'], time() + 60 * 60 * 24 * 30);
         setcookie("hash", $hash, time() + 60 * 60 * 24 * 30);
 
         // Переадресовываем браузер на страницу проверки нашего скрипта
-        // header("url=/coolAuth/check.php"); 
-        // exit();
 
     } else {
         $error = true;
@@ -84,7 +82,14 @@ if(isset($_POST['submit'])) {
     </div>
 
     <div class="success">
-        <?=$success ? 'Вход выполнен успешно!' : ''?>
+        <?php
+        if (!empty($success)) {
+            echo 'Вход выполнен успешно!<br>';
+            echo 'Переход на страницу чека через 2 секунды';
+            header("Refresh: 2; url=/coolAuth/check.php"); 
+            exit();
+        }
+        ?>
     </div>
 </div>
 

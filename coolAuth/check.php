@@ -2,28 +2,25 @@
 
 // Скрипт проверки
 
-require_once('/coolAuth//connection.php');
+require_once ($_SERVER['DOCUMENT_ROOT'] . '/coolAuth//connection.php');
 
 // Соединямся с БД
 $link = mysqli_connect($host, $user, $password, $database) or die("Ошибка " . mysqli_error($link));
 
-if (isset($_COOKIE['id']) and isset($_COOKIE['hash'])) {   
+if (isset($_COOKIE['id']) && isset($_COOKIE['hash'])) {   
 
-    $query = mysqli_query("SELECT *,INET_NTOA(user_ip) FROM users WHERE user_id = '" . intval($_COOKIE['id'])."' LIMIT 1");
+    $query = mysqli_query($link, "SELECT *,INET_NTOA(ip) FROM users WHERE id = '" . intval($_COOKIE['id'])."' LIMIT 1");
     $userdata = mysqli_fetch_assoc($query);
 
-    if(($userdata['user_hash'] !== $_COOKIE['hash']) or ($userdata['user_id'] !== $_COOKIE['id'])<br> or (($userdata['user_ip'] !== $_SERVER['REMOTE_ADDR'])  and ($userdata['user_ip'] !== "0"))) {
-
+    if (($userdata['hash'] !== $_COOKIE['hash']) || ($userdata['id'] !== $_COOKIE['id']) || (($userdata['INET_NTOA(ip)'] !== $_SERVER['REMOTE_ADDR']) && ($userdata['ip'] !== "0"))) {
         setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
         setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
-
-        print "Хм, что-то не получилось";
-
+        echo "Хм, что-то не получилось";
     } else {
-        print "Привет, " . $userdata['user_login'] . ". Всё работает!";
+        echo "Привет, " . $userdata['login'] . ". Всё работает!";
     }
 } else {
-    print "Включите куки";
+    echo "Включите куки";
 }
 
 ?>
