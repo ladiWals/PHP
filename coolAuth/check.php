@@ -15,12 +15,24 @@ if (isset($_COOKIE['id']) && isset($_COOKIE['hash'])) {
     if (($userdata['hash'] !== $_COOKIE['hash']) || ($userdata['id'] !== $_COOKIE['id']) || (($userdata['INET_NTOA(ip)'] !== $_SERVER['REMOTE_ADDR']) && ($userdata['ip'] !== "0"))) {
         setcookie("id", "", time() - 3600 * 24 * 30 * 12, "/");
         setcookie("hash", "", time() - 3600 * 24 * 30 * 12, "/");
-        echo "Хм, что-то не получилось";
+        $result = "Хм, что-то не получилось";
     } else {
-        echo "Привет, " . $userdata['login'] . ". Всё работает!";
+        $result = "Привет, " . $userdata['login'] . ". Всё работает!";
     }
 } else {
-    echo "Включите куки";
+    $result = "Включите куки";
 }
-
 ?>
+
+<!DOCTYPE html>
+
+<head>
+    <title>Проверка</title>
+    <link rel="stylesheet" href="/coolAuth/styles.css">
+</head>
+
+<body>
+    <div class="check">
+        <?=$result?>
+    </div>
+</body>

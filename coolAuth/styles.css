@@ -25,6 +25,11 @@ body {
 	margin-top: 300px;
 }
 
+.check {
+	margin: 20px;
+	font-size: 30px;
+}
+
 input {
 	margin: 10px;
 	font-size: 22px;
