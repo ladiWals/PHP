@@ -6,17 +6,18 @@ body {
 }
 
 .error {
+	text-align: center;
 	padding: 10px;
 	color: red;
 }
 
 .success {
+	text-align: center;
 	color: green;
 	padding: 5px;
 }
 
 .window {
-
 	border-radius: 10px;
 	background-color: #eee;
 	margin-left: 35%;
