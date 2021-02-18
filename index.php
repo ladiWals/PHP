@@ -15,5 +15,6 @@
 	<ul>
 		<li><a href="/coolAuth">Качественная авторизация</a></li>
 		<li><a href="/tests/connectDBtest.php">Тест подключения к локальной БД</a></li>
+		<li><a href="/profitHata/">Расчёт ипотеки</a></li>
 	</ul>
 </body>
