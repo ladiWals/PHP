@@ -44,7 +44,7 @@ if (isset($_POST['submit'])) {
 }
 
 // Закрываем соединение с БД
-mysqli_close ($link);
+mysqli_close($link);
 ?>
 
 <!DOCTYPE html>

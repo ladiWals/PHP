@@ -85,7 +85,7 @@ if(isset($_POST['submit'])) {
         <?php
         if (!empty($success)) {
             echo 'Вход выполнен успешно!<br>';
-            echo 'Переход на страницу чека через 2 секунды';
+            echo 'Переход на страницу проверки через 2 секунды';
             header("Refresh: 2; url=/coolAuth/check.php"); 
             exit();
         }
