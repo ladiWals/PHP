@@ -1,5 +1,8 @@
 <?php
 
+$step = 32;
+$max = 256;
+
 ?>
 
 <!DOCTYPE html>
@@ -8,7 +11,7 @@
 	<title>Цветушка-красотушка</title>
 	<style>
 		body {
-			font-size: 25px;
+			font-size: 20px;
 			text-align: center;
 		}
 	</style>
@@ -16,15 +19,15 @@
 
 <body>
 	<?php 
-	for ($r = 0; $r < 16; $r += 2) { 
-		for ($g = 0; $g < 16; $g += 2) {
+	for ($r = 0; $r < $max; $r += $step) { 
+		for ($g = 0; $g < $max; $g += $step) {
 			echo "<br>";
-			for ($b = 0; $b < 16; $b += 2) {
+			for ($b = 0; $b < $max; $b += $step) {
 	?>
 				<span 
-					style="color: #<?php printf("%x%x%x", $r, $g, $b); ?>">
+					style="color: #<?php printf("%02x%02x%02x", $r, $g, $b); ?>">
 					<?php 
-					printf("%x%x%x", $r, $g, $b);
+					printf("%02X%02X%02X", $r, $g, $b);
 					?>
 				</span>
 	<?php } } }?>
