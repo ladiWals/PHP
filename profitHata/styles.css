@@ -1,9 +1,14 @@
 body {
 	font-family: Z003;
+	font-size: 20px;
 	color: white;
 	background-color: #3cc6e6;
 }
 
 h1 {
 	text-align: center;
+}
+
+ul {
+	list-style-type: none;
 }
