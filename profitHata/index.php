@@ -33,37 +33,36 @@ if (isset($_POST['submit'])) {
 
 		<form method="POST" action="/profitHata/">
 			<table>
-				<input name="fullPrice" type="text" placeholder="Цена квартиры">
-				<input name="firstPay" type="text" placeholder="Первый взнос">
-				<input name="percent" type="text" placeholder="Процент по ипотеке">
-				<input name="term" type="text" placeholder="Срок ипотеки">
+				<input name="fullPrice" type="text" placeholder="Цена квартиры" value="<?=isset($pst_fullPrice) ? $pst_fullPrice : ''?>">
+				<input name="firstPay" type="text" placeholder="Первый взнос" value="<?=isset($pst_firstPay) ? $pst_firstPay : ''?>">
+				<input name="percent" type="text" placeholder="Процент по ипотеке" value="<?=isset($pst_percent) ? $pst_percent : ''?>">
+				<input name="term" type="text" placeholder="Срок ипотеки" value="<?=isset($pst_term) ? $pst_term : ''?>">
 				<input type="submit" name="submit" value="Рассчитать">
 			</table>
 		</form>
 
 	</div>
 
-	<h1>Результаты расчёта:</h1>
+	<?php
+	if (isset($_POST['submit'])) {
+	?>
+		<h1>Результаты расчёта:</h1>
 
-	<div class="result">
-		<ul>
-
-			<?php
-			if (isset($_POST['submit'])) {
-			?>
-				<li>Цена квартиры: <span><?=$pst_fullPrice?></span></li>
-				<li>Первый взнос: <span><?=$pst_firstPay?></span></li>
-				<li>Процент по ипотеке: <span><?=$pst_percent?></span></li>
-				<li>Срок ипотеки: <span><?=$pst_term?></span></li>
+		<div class="result">
+			<ul>
+				<li>Цена квартиры: <span><?=$pst_fullPrice?> &#8381</span></li>
+				<li>Первый взнос: <span><?=$pst_firstPay?> &#8381</span></li>
+				<li>Процент по ипотеке: <span><?=$pst_percent?> %</span></li>
+				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
 				<hr>
-			<?php } ?>
 
-			<li>Сумма кредита: <span><?=round($credit)?> &#8381</span></li>
-			<li>Ежемесячный платёж: <span><?=round($monthPay)?> &#8381</span></li>
-			<li>Годовой платёж: <span><?=round($yearPay)?> &#8381</span></li>
-			<li>Общая выплата: <span><?=round($fullPay)?> &#8381</span></li>
-			<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
-		</ul>
-	</div>
+				<li>Сумма кредита: <span><?=round($credit)?> &#8381</span></li>
+				<li>Ежемесячный платёж: <span><?=round($monthPay)?> &#8381</span></li>
+				<li>Годовой платёж: <span><?=round($yearPay)?> &#8381</span></li>
+				<li>Общая выплата: <span><?=round($fullPay)?> &#8381</span></li>
+				<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
+			</ul>
+		</div>
+	<?php } ?>
 
 </body>
