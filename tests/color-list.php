@@ -1,6 +1,6 @@
 <?php
 
-$step = 32;
+$step = 16;
 $max = 256;
 
 ?>
@@ -23,12 +23,10 @@ $max = 256;
 		for ($g = 0; $g < $max; $g += $step) {
 			echo "<br>";
 			for ($b = 0; $b < $max; $b += $step) {
+				$hexString = sprintf("%02X%02X%02X", $r, $g, $b);
 	?>
-				<span 
-					style="color: #<?php printf("%02x%02x%02x", $r, $g, $b); ?>">
-					<?php 
-					printf("%02X%02X%02X", $r, $g, $b);
-					?>
+				<span style="color: #<?=$hexString?>">
+					<?=$hexString?>
 				</span>
-	<?php } } }?>
+	<?php } } } ?>
 </body>

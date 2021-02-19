@@ -12,3 +12,24 @@ h1 {
 ul {
 	list-style-type: none;
 }
+
+input {
+	border-radius: 7px;
+	width: 300px;
+	font-family: Z003;
+	font-size: 24px;
+	margin: 20px 20px 0 20px;
+}
+
+input[type="submit"] {
+	width: 308px;
+	margin: 20px;
+}
+
+.mainForm {
+	border-radius: 20px;
+	background-color: #3cc6e6;
+	margin-left: auto;
+	margin-right: auto;
+	width: 345px;
+}

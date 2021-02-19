@@ -14,12 +14,13 @@
 
 	<div class="mainForm">
 		<form method="POST" action="/profitHata">
-			<ul>
-				<li><input name="fullPrice" type="text" placeholder="Цена квартиры"></li>
-				<li><input name="firstPay" type="text" placeholder="Первый взнос"></li>
-				<li><input name="percent" type="text" placeholder="Процент по ипотеке"></li>
-				<li><input name="term" type="text" placeholder="Срок ипотеки"></li>
-			</ul>
+			<table>
+				<input name="fullPrice" type="text" placeholder="Цена квартиры" size="20">
+				<input name="firstPay" type="text" placeholder="Первый взнос" size="20">
+				<input name="percent" type="text" placeholder="Процент по ипотеке" size="20">
+				<input name="term" type="text" placeholder="Срок ипотеки" size="20">
+				<input type="submit" name="submit" value="Рассчитать" size="20">
+			</table>
 		</form>
 	</div>
 	<h1>Результаты расчёта</h1>
