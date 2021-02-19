@@ -28,8 +28,26 @@ input[type="submit"] {
 
 .mainForm {
 	border-radius: 20px;
-	background-color: #3cc6e6;
+	background-color: #2cb6d6;
 	margin-left: auto;
 	margin-right: auto;
 	width: 345px;
+}
+
+.result {
+	border-radius: 20px;
+	background-color: #2cb6d6;
+	width: 600px;
+	margin-left: auto;
+	margin-right: auto;
+	font-size: 35px;
+}
+
+.result span {
+	font-size: 40px;
+	color: #444;
+}
+
+.result li {
+	margin-top: 20px;
 }
