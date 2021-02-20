@@ -11,7 +11,8 @@ if (isset($_POST['submit'])) {
 	$monthPay = ($credit * $monthRate * $generalRate) / ($generalRate - 1); // Ежемесячный платёж
 	$yearPay = $monthPay * 12; // Годовая выплата
 	$fullPay = $yearPay * (int) $pst_term; // Общая выплата
-	$overPay = $fullPay - (int) $pst_fullPrice; // Общая переплата по кредиту
+	$overPay = $fullPay - ((int) $pst_fullPrice - (int) $pst_firstPay); // Общая переплата по кредиту
+	$overPayPercent = $overPay / $fullPay * 100; // Процент переплаты
 
 	$suffix = ((int) $pst_term % 10 == 1) ? 'год' : (in_array((int) $pst_term % 10, [2, 3, 4]) ? 'года' : 'лет');
 }
@@ -61,6 +62,7 @@ if (isset($_POST['submit'])) {
 				<li>Годовой платёж: <span><?=round($yearPay)?> &#8381</span></li>
 				<li>Общая выплата: <span><?=round($fullPay)?> &#8381</span></li>
 				<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
+				<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
 			</ul>
 		</div>
 	<?php } ?>
