@@ -14,6 +14,8 @@ if (isset($_POST['submit'])) {
 	$overPay = $fullPay - ((int) $pst_fullPrice - (int) $pst_firstPay); // Общая переплата по кредиту
 	$overPayPercent = $overPay / $fullPay * 100; // Процент переплаты
 
+	$minSalary = $monthPay + $pst_monthSpend; // Необходимая зарплата
+
 	$suffix = ((int) $pst_term % 10 == 1) ? 'год' : (in_array((int) $pst_term % 10, [2, 3, 4]) ? 'года' : 'лет');
 }
 
@@ -38,6 +40,7 @@ if (isset($_POST['submit'])) {
 				<input name="firstPay" type="text" placeholder="Первый взнос" value="<?=isset($pst_firstPay) ? $pst_firstPay : ''?>">
 				<input name="percent" type="text" placeholder="Процент по ипотеке" value="<?=isset($pst_percent) ? $pst_percent : ''?>">
 				<input name="term" type="text" placeholder="Срок ипотеки" value="<?=isset($pst_term) ? $pst_term : ''?>">
+				<input name="monthSpend" type="text" placeholder="Траты на жизнь в месяц" value="<?=isset($pst_monthSpend) ? $pst_monthSpend : ''?>">
 				<input type="submit" name="submit" value="Рассчитать">
 			</table>
 		</form>
@@ -47,22 +50,29 @@ if (isset($_POST['submit'])) {
 	<?php
 	if (isset($_POST['submit'])) {
 	?>
-		<h1>Результаты расчёта:</h1>
+		<h1>Введённые данные:</h1>
 
-		<div class="result">
+		<div class="initial">
 			<ul>
 				<li>Цена квартиры: <span><?=$pst_fullPrice?> &#8381</span></li>
 				<li>Первый взнос: <span><?=$pst_firstPay?> &#8381</span></li>
 				<li>Процент по ипотеке: <span><?=$pst_percent?> %</span></li>
 				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
-				<hr>
 
+				<li>Ежемесячные траты: <span><?=$pst_monthSpend?></span></li>
+			</ul>
+		</div>
+
+		<h1>Результаты расчёта:</h1>
+		<div class="result">
+			<ul>
 				<li>Сумма кредита: <span><?=round($credit)?> &#8381</span></li>
 				<li>Ежемесячный платёж: <span><?=round($monthPay)?> &#8381</span></li>
 				<li>Годовой платёж: <span><?=round($yearPay)?> &#8381</span></li>
 				<li>Общая выплата: <span><?=round($fullPay)?> &#8381</span></li>
 				<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
 				<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
+				<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
 			</ul>
 		</div>
 	<?php } ?>

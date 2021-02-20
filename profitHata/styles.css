@@ -34,7 +34,7 @@ input[type="submit"] {
 	width: 345px;
 }
 
-.result {
+.result, .initial {
 	border-radius: 20px;
 	background-color: #2cb6d6;
 	width: 600px;
@@ -43,7 +43,7 @@ input[type="submit"] {
 	font-size: 35px;
 }
 
-.result span {
+span {
 	font-size: 40px;
 	color: #444;
 }
