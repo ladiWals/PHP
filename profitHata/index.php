@@ -15,6 +15,7 @@ if (isset($_POST['submit'])) {
 	$overPayPercent = $overPay / $fullPay * 100; // Процент переплаты
 
 	$minSalary = $monthPay + $pst_monthSpend; // Необходимая зарплата
+	$toFirstPayMonth = $pst_firstPay / ($pst_currentSalary- $pst_monthSpend - $pst_monthRent);
 
 	$suffix = ((int) $pst_term % 10 == 1) ? 'год' : (in_array((int) $pst_term % 10, [2, 3, 4]) ? 'года' : 'лет');
 }
@@ -41,6 +42,8 @@ if (isset($_POST['submit'])) {
 				<input name="percent" type="text" placeholder="Процент по ипотеке" value="<?=isset($pst_percent) ? $pst_percent : ''?>">
 				<input name="term" type="text" placeholder="Срок ипотеки" value="<?=isset($pst_term) ? $pst_term : ''?>">
 				<input name="monthSpend" type="text" placeholder="Траты на жизнь в месяц" value="<?=isset($pst_monthSpend) ? $pst_monthSpend : ''?>">
+				<input name="monthRent" type="text" placeholder="Траты на съём до ипотеки" value="<?=isset($pst_monthRent) ? $pst_monthRent : ''?>">
+				<input name="currentSalary" type="text" placeholder="Текущая зарплата" value="<?=isset($pst_currentSalary) ? $pst_currentSalary : ''?>">
 				<input type="submit" name="submit" value="Рассчитать">
 			</table>
 		</form>
@@ -60,6 +63,8 @@ if (isset($_POST['submit'])) {
 				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
 
 				<li>Ежемесячные траты: <span><?=$pst_monthSpend?></span></li>
+				<li>Аренда жилья до ипотеки: <span><?=$pst_monthRent?></span></li>
+				<li>Текущая зарплата: <span><?=$pst_currentSalary?></span></li>
 			</ul>
 		</div>
 
@@ -73,6 +78,7 @@ if (isset($_POST['submit'])) {
 				<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
 				<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
 				<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
+				<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>
 			</ul>
 		</div>
 	<?php } ?>
