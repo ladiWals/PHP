@@ -18,15 +18,25 @@ input {
 	width: 300px;
 	font-family: Z003;
 	font-size: 24px;
-	margin: 20px 20px 0 20px;
+	margin: 0 20px 0 20px;
 }
 
 input[type="submit"] {
+	font-size: 30px;
 	width: 308px;
+	height: 50px;
 	margin: 20px;
 }
 
+.hint {
+	font-size: 16px;
+	font-family: Ubuntu italic;
+	color: #444;
+	margin: 15px 10px 0 20px;
+}
+
 .mainForm {
+	padding: 10px;
 	border-radius: 20px;
 	background-color: #2cb6d6;
 	margin-left: auto;
