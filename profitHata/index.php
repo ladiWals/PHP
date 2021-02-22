@@ -13,9 +13,10 @@ if (isset($_POST['submit'])) {
 	$fullPay = $yearPay * (int) $pst_term; // Общая выплата
 	$overPay = $fullPay - ((int) $pst_fullPrice - (int) $pst_firstPay); // Общая переплата по кредиту
 	$overPayPercent = $overPay / $fullPay * 100; // Процент переплаты
+	$firstPayPercent = $pst_firstPay / $pst_fullPrice * 100;
 
 	$minSalary = $monthPay + $pst_monthSpend; // Необходимая зарплата
-	$toFirstPayMonth = $pst_firstPay / ($pst_currentSalary- $pst_monthSpend - $pst_monthRent);
+	$toFirstPayMonth = $pst_firstPay / ($pst_currentSalary- $pst_monthSpend - $pst_monthRent); // Сколько месяцев потребуется, чтобы накопить на первый взнос
 
 	$suffix = ((int) $pst_term % 10 == 1) ? 'год' : (in_array((int) $pst_term % 10, [2, 3, 4]) ? 'года' : 'лет');
 }
@@ -58,7 +59,7 @@ if (isset($_POST['submit'])) {
 		<div class="initial">
 			<ul>
 				<li>Цена квартиры: <span><?=$pst_fullPrice?> &#8381</span></li>
-				<li>Первый взнос: <span><?=$pst_firstPay?> &#8381</span></li>
+				<li>Первый взнос: <span><?=$pst_firstPay?> &#8381 <?='( ' . round($firstPayPercent, 1) . '% )'?></span></li>
 				<li>Процент по ипотеке: <span><?=$pst_percent?> %</span></li>
 				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
 
