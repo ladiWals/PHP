@@ -39,19 +39,19 @@ if (isset($_POST['submit'])) {
 		<form method="POST" action="/profitHata/">
 			<table>
 				<div class="hint">Цена квартиры</div>
-				<input name="fullPrice" type="text" placeholder="Цена квартиры" value="<?=isset($pst_fullPrice) ? $pst_fullPrice : ''?>">
+				<input name="fullPrice" type="text" value="<?=isset($pst_fullPrice) ? $pst_fullPrice : ''?>">
 				<div class="hint">Первый взнос</div>
-				<input name="firstPay" type="text" placeholder="Первый взнос" value="<?=isset($pst_firstPay) ? $pst_firstPay : ''?>">
+				<input name="firstPay" type="text" value="<?=isset($pst_firstPay) ? $pst_firstPay : ''?>">
 				<div class="hint">Процент по ипотеке</div>
-				<input name="percent" type="text" placeholder="Процент по ипотеке" value="<?=isset($pst_percent) ? $pst_percent : ''?>">
+				<input name="percent" type="text" value="<?=isset($pst_percent) ? $pst_percent : ''?>">
 				<div class="hint">Срок ипотеки в годах</div>
-				<input name="term" type="text" placeholder="Срок ипотеки" value="<?=isset($pst_term) ? $pst_term : ''?>">
+				<input name="term" type="text" value="<?=isset($pst_term) ? $pst_term : ''?>">
 				<div class="hint">Ежемесячные траты на жизнь</div>
-				<input name="monthSpend" type="text" placeholder="Траты на жизнь в месяц" value="<?=isset($pst_monthSpend) ? $pst_monthSpend : ''?>">
+				<input name="monthSpend" type="text" value="<?=isset($pst_monthSpend) ? $pst_monthSpend : ''?>">
 				<div class="hint">Ежемесячные траты на съём до ипотеки</div>
-				<input name="monthRent" type="text" placeholder="Траты на съём до ипотеки" value="<?=isset($pst_monthRent) ? $pst_monthRent : ''?>">
+				<input name="monthRent" type="text" value="<?=isset($pst_monthRent) ? $pst_monthRent : ''?>">
 				<div class="hint">Текущая зарплата</div>
-				<input name="currentSalary" type="text" placeholder="Текущая зарплата" value="<?=isset($pst_currentSalary) ? $pst_currentSalary : ''?>">
+				<input name="currentSalary" type="text" value="<?=isset($pst_currentSalary) ? $pst_currentSalary : ''?>">
 				<input type="submit" name="submit" value="Рассчитать">
 			</table>
 		</form>
