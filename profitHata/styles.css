@@ -45,11 +45,10 @@ input[type="submit"] {
 }
 
 .result, .initial {
+	padding: 15px;
+	display: inline-block;
 	border-radius: 20px;
 	background-color: #2cb6d6;
-	width: 600px;
-	margin-left: auto;
-	margin-right: auto;
 	font-size: 35px;
 }
 

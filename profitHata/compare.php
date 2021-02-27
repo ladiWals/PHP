@@ -84,32 +84,62 @@ function explodeThousand($number)
 	?>
 		<h1>Введённые данные:</h1>
 
-		<div class="initial">
-			<ul>
-				<li>Цена квартиры: <span><?=explodeThousand($pst_fullPrice)?> &#8381</span></li>
-				<li>Первый взнос: <span><?=explodeThousand($pst_firstPay)?> &#8381 <?='( ' . round($firstPayPercent, 1) . '% )'?></span></li>
-				<li>Процент по ипотеке: <span><?=$pst_percent?> %</span></li>
-				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
-
-				<li>Ежемесячные траты: <span><?=explodeThousand($pst_monthSpend)?></span></li>
-				<li>Аренда жилья до ипотеки: <span><?=explodeThousand($pst_monthRent)?></span></li>
-				<li>Текущая зарплата: <span><?=explodeThousand($pst_currentSalary)?></span></li>
-			</ul>
-		</div>
+		<center>
+			<div class="initial">
+				<table>
+					<tr>
+						<td>Цена квартиры:</td>
+						<td><span><?=explodeThousand($pst_fullPrice_1)?> &#8381</span></td>
+						<td><span><?=explodeThousand($pst_fullPrice_2)?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Первый взнос:</td>
+						<td><span><?=explodeThousand($pst_firstPay_1)?> &#8381 <?='( ' . round($firstPayPercent_1, 1) . '% )'?></span></td>
+						<td><span><?=explodeThousand($pst_firstPay_2)?> &#8381 <?='( ' . round($firstPayPercent_2, 1) . '% )'?></span></td>
+					</tr>
+					<tr>
+						<td>Процент по ипотеке:</td> 
+						<td><span><?=$pst_percent_1?> %</span></td>
+						<td><span><?=$pst_percent_2?> %</span></td>
+					</tr>
+					<tr>
+						<td>Срок ипотеки:</td>
+						<td><span><?=$pst_term_1 . ' ' . $suffix_1?></span></td>
+						<td><span><?=$pst_term_2 . ' ' . $suffix_2?></span></td>
+					</tr>
+					<tr>
+						<td>Ежемесячные траты:</td>
+						<td><span><?=explodeThousand($pst_monthSpend_1)?> &#8381</span></td>
+						<td><span><?=explodeThousand($pst_monthSpend_2)?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Аренда жилья до ипотеки:</td>
+						<td><span><?=explodeThousand($pst_monthRent_1)?> &#8381</span></td>
+						<td><span><?=explodeThousand($pst_monthRent_2)?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Текущая зарплата:</td>
+						<td><span><?=explodeThousand($pst_currentSalary_1)?> &#8381</span></td>
+						<td><span><?=explodeThousand($pst_currentSalary_2)?> &#8381</span></td>
+				</table>
+			</div>
+		</center>
 
 		<h1>Результаты расчёта:</h1>
-		<div class="result">
-			<ul>
-				<li>Сумма кредита: <span><?=explodeThousand(round($credit))?> &#8381</span></li>
-				<li>Ежемесячный платёж: <span><?=explodeThousand(round($monthPay))?> &#8381</span></li>
-				<li>Годовой платёж: <span><?=explodeThousand(round($yearPay))?> &#8381</span></li>
-				<li>Общая выплата: <span><?=explodeThousand(round($fullPay))?> &#8381</span></li>
-				<li>Переплата по кредиту: <span><?=explodeThousand(round($overPay))?> &#8381</span></li>
-				<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
-				<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
-				<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>
-			</ul>
-		</div>
+		<center>
+			<div class="result">
+				<ul>
+					<li>Сумма кредита: <span><?=explodeThousand(round($credit))?> &#8381</span></li>
+					<li>Ежемесячный платёж: <span><?=explodeThousand(round($monthPay))?> &#8381</span></li>
+					<li>Годовой платёж: <span><?=explodeThousand(round($yearPay))?> &#8381</span></li>
+					<li>Общая выплата: <span><?=explodeThousand(round($fullPay))?> &#8381</span></li>
+					<li>Переплата по кредиту: <span><?=explodeThousand(round($overPay))?> &#8381</span></li>
+					<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
+					<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
+					<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>
+				</ul>
+			</div>
+		</center>
 	<?php } ?>
 
 </body>
