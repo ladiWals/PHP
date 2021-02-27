@@ -36,7 +36,7 @@ if (isset($_POST['submit'])) {
 
 	<div class="mainForm">
 
-		<form method="POST" action="/profitHata/">
+		<form method="POST" action="/profitHata/advanced.php">
 			<table>
 				<div class="hint">Цена квартиры</div>
 				<input name="fullPrice" type="text" value="<?=isset($pst_fullPrice) ? $pst_fullPrice : ''?>">
