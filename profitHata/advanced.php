@@ -21,6 +21,20 @@ if (isset($_POST['submit'])) {
 	$suffix = ((int) $pst_term % 10 == 1) ? 'год' : (in_array((int) $pst_term % 10, [2, 3, 4]) ? 'года' : 'лет');
 }
 
+function explodeThousand($number) 
+{
+	$explodedNum = '';
+	$number	= strrev((string) $number);
+	for($i = 0; $i < strlen($number); $i++) {
+		$explodedNum .= $number[$i];
+		if(($i + 1) % 3 === 0) {
+			$explodedNum .= ' ';
+		}
+	}
+	$explodedNum = strrev($explodedNum);
+	return $explodedNum;
+}
+
 ?>
 
 <!DOCTYPE html>
@@ -65,25 +79,25 @@ if (isset($_POST['submit'])) {
 
 		<div class="initial">
 			<ul>
-				<li>Цена квартиры: <span><?=$pst_fullPrice?> &#8381</span></li>
-				<li>Первый взнос: <span><?=$pst_firstPay?> &#8381 <?='( ' . round($firstPayPercent, 1) . '% )'?></span></li>
+				<li>Цена квартиры: <span><?=explodeThousand($pst_fullPrice)?> &#8381</span></li>
+				<li>Первый взнос: <span><?=explodeThousand($pst_firstPay)?> &#8381 <?='( ' . round($firstPayPercent, 1) . '% )'?></span></li>
 				<li>Процент по ипотеке: <span><?=$pst_percent?> %</span></li>
 				<li>Срок ипотеки: <span><?=$pst_term . ' ' . $suffix?></span></li>
 
-				<li>Ежемесячные траты: <span><?=$pst_monthSpend?></span></li>
-				<li>Аренда жилья до ипотеки: <span><?=$pst_monthRent?></span></li>
-				<li>Текущая зарплата: <span><?=$pst_currentSalary?></span></li>
+				<li>Ежемесячные траты: <span><?=explodeThousand($pst_monthSpend)?></span></li>
+				<li>Аренда жилья до ипотеки: <span><?=explodeThousand($pst_monthRent)?></span></li>
+				<li>Текущая зарплата: <span><?=explodeThousand($pst_currentSalary)?></span></li>
 			</ul>
 		</div>
 
 		<h1>Результаты расчёта:</h1>
 		<div class="result">
 			<ul>
-				<li>Сумма кредита: <span><?=round($credit)?> &#8381</span></li>
-				<li>Ежемесячный платёж: <span><?=round($monthPay)?> &#8381</span></li>
-				<li>Годовой платёж: <span><?=round($yearPay)?> &#8381</span></li>
-				<li>Общая выплата: <span><?=round($fullPay)?> &#8381</span></li>
-				<li>Переплата по кредиту: <span><?=round($overPay)?> &#8381</span></li>
+				<li>Сумма кредита: <span><?=explodeThousand(round($credit))?> &#8381</span></li>
+				<li>Ежемесячный платёж: <span><?=explodeThousand(round($monthPay))?> &#8381</span></li>
+				<li>Годовой платёж: <span><?=explodeThousand(round($yearPay))?> &#8381</span></li>
+				<li>Общая выплата: <span><?=explodeThousand(round($fullPay))?> &#8381</span></li>
+				<li>Переплата по кредиту: <span><?=explodeThousand(round($overPay))?> &#8381</span></li>
 				<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
 				<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
 				<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>

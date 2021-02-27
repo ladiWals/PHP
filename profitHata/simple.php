@@ -21,8 +21,7 @@ if (isset($_POST['submit'])) {
 function explodeThousand($number) 
 {
 	$explodedNum = '';
-	$number = (string) $number;
-	$number	= strrev($number);
+	$number	= strrev((string) $number);
 	for($i = 0; $i < strlen($number); $i++) {
 		$explodedNum .= $number[$i];
 		if(($i + 1) % 3 === 0) {
@@ -38,7 +37,7 @@ function explodeThousand($number)
 <!DOCTYPE html>
 
 <head>
-	<title>Подробный расчёт</title>
+	<title>Простейший расчёт</title>
 	<link href="/profitHata/styles.css" rel="stylesheet">
 	<link rel="SHORTCUT ICON" href="/profitHata/favicon.ico" type="image/x-icon">
 </head>
