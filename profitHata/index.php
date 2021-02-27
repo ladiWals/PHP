@@ -10,9 +10,9 @@
 
 <body>
 	<div class="index">
-		<a href="/profitHata/simple.php">Простой ипотечный калькулятор</a>
-		<a href="/profitHata/advanced.php">Подробный анализ ипотеки</a>
-		<a href="/profitHata/compare.php">Сравнение условий ипотеки</a>
+		<li><a href="/profitHata/simple.php">Простой ипотечный калькулятор</a></li>
+		<li><a href="/profitHata/advanced.php">Подробный анализ ипотеки</a></li>
+		<li><a href="/profitHata/compare.php">Сравнение условий ипотеки</a></li>
 	</div>
 </body>
 
