@@ -23,9 +23,13 @@ if (isset($_POST['submit'])) {
 
 		${'suffix_' . $i} = ((int) ${'pst_term_' . $i} % 10 == 1) ? 'год' : (in_array((int) ${'pst_term_' . $i} % 10, [2, 3, 4]) ? 'года' : 'лет');
 	}
+
+	foreach($formList as $item) {
+		${'diff_' . $item['name']} = ${'pst_' . $item['name'] . '_2'} - ${'pst_' . $item['name'] . '_1'};
+	}
 }
 
-function explodeThousand($number) 
+function zeroSpace($number, $signed = false) 
 {
 	$explodedNum = '';
 	$number	= strrev((string) $number);
@@ -36,7 +40,11 @@ function explodeThousand($number)
 		}
 	}
 	$explodedNum = strrev($explodedNum);
-	return $explodedNum;
+	return $signed ? addSign($explodedNum) : $explodedNum;
+}
+
+function addSign($str) {
+	return ($str[0] !== '-') ? ('+' . $str) : ($str);
 }
 
 ?>
@@ -89,13 +97,14 @@ function explodeThousand($number)
 				<table>
 					<tr>
 						<td>Цена квартиры:</td>
-						<td><span><?=explodeThousand($pst_fullPrice_1)?> &#8381</span></td>
-						<td><span><?=explodeThousand($pst_fullPrice_2)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_fullPrice_1)?> &#8381</span></td>
+						<td><img src="/profitHata/images/stonks_white.ico" width="50"><?=zeroSpace($diff_fullPrice, true)?></td>
+						<td><span><?=zeroSpace($pst_fullPrice_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Первый взнос:</td>
-						<td><span><?=explodeThousand($pst_firstPay_1)?> &#8381 <?='( ' . round($firstPayPercent_1, 1) . '% )'?></span></td>
-						<td><span><?=explodeThousand($pst_firstPay_2)?> &#8381 <?='( ' . round($firstPayPercent_2, 1) . '% )'?></span></td>
+						<td><span><?=zeroSpace($pst_firstPay_1)?> &#8381 <?='( ' . round($firstPayPercent_1, 1) . '% )'?></span></td>
+						<td><span><?=zeroSpace($pst_firstPay_2)?> &#8381 <?='( ' . round($firstPayPercent_2, 1) . '% )'?></span></td>
 					</tr>
 					<tr>
 						<td>Процент по ипотеке:</td> 
@@ -109,18 +118,18 @@ function explodeThousand($number)
 					</tr>
 					<tr>
 						<td>Ежемесячные траты:</td>
-						<td><span><?=explodeThousand($pst_monthSpend_1)?> &#8381</span></td>
-						<td><span><?=explodeThousand($pst_monthSpend_2)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_monthSpend_1)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_monthSpend_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Аренда жилья до ипотеки:</td>
-						<td><span><?=explodeThousand($pst_monthRent_1)?> &#8381</span></td>
-						<td><span><?=explodeThousand($pst_monthRent_2)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_monthRent_1)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_monthRent_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Текущая зарплата:</td>
-						<td><span><?=explodeThousand($pst_currentSalary_1)?> &#8381</span></td>
-						<td><span><?=explodeThousand($pst_currentSalary_2)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_currentSalary_1)?> &#8381</span></td>
+						<td><span><?=zeroSpace($pst_currentSalary_2)?> &#8381</span></td>
 				</table>
 			</div>
 		</center>
@@ -129,11 +138,11 @@ function explodeThousand($number)
 		<center>
 			<div class="result">
 				<ul>
-					<li>Сумма кредита: <span><?=explodeThousand(round($credit))?> &#8381</span></li>
-					<li>Ежемесячный платёж: <span><?=explodeThousand(round($monthPay))?> &#8381</span></li>
-					<li>Годовой платёж: <span><?=explodeThousand(round($yearPay))?> &#8381</span></li>
-					<li>Общая выплата: <span><?=explodeThousand(round($fullPay))?> &#8381</span></li>
-					<li>Переплата по кредиту: <span><?=explodeThousand(round($overPay))?> &#8381</span></li>
+					<li>Сумма кредита: <span><?=zeroSpace(round($credit))?> &#8381</span></li>
+					<li>Ежемесячный платёж: <span><?=zeroSpace(round($monthPay))?> &#8381</span></li>
+					<li>Годовой платёж: <span><?=zeroSpace(round($yearPay))?> &#8381</span></li>
+					<li>Общая выплата: <span><?=zeroSpace(round($fullPay))?> &#8381</span></li>
+					<li>Переплата по кредиту: <span><?=zeroSpace(round($overPay))?> &#8381</span></li>
 					<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
 					<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
 					<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>
