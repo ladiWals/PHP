@@ -52,6 +52,7 @@ function zeroSpace($number, $signed = false)
 
 // Функция добавляет знак к числу
 function addSign($str) {
+	$str = trim($str);
 	return ($str[0] !== '-') ? ('+' . $str) : ($str);
 }
 
@@ -110,37 +111,43 @@ function addSign($str) {
 					<tr>
 						<td>Цена квартиры:</td>
 						<td><span><?=zeroSpace($pst_fullPrice_1)?> &#8381</span></td>
-						<td><img src="/profitHata/images/stonks_white.ico" width="50"><?=zeroSpace($diff_fullPrice, true)?></td>
+						<td><img src="/profitHata/images/<?=$diff_fullPrice < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_fullPrice, true)?></td>
 						<td><span><?=zeroSpace($pst_fullPrice_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Первый взнос:</td>
-						<td><span><?=zeroSpace($pst_firstPay_1)?> &#8381 <?='( ' . round($firstPayPercent_1, 1) . '% )'?></span></td>
-						<td><span><?=zeroSpace($pst_firstPay_2)?> &#8381 <?='( ' . round($firstPayPercent_2, 1) . '% )'?></span></td>
+						<td><span><?=zeroSpace($pst_firstPay_1)?> &#8381 <?='(' . round($firstPayPercent_1, 1) . '%)'?></span></td>
+						<td><img src="/profitHata/images/<?=$diff_firstPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_firstPay, true)?></td>
+						<td><span><?=zeroSpace($pst_firstPay_2)?> &#8381 <?='(' . round($firstPayPercent_2, 1) . '%)'?></span></td>
 					</tr>
 					<tr>
 						<td>Процент по ипотеке:</td> 
 						<td><span><?=$pst_percent_1?> %</span></td>
+						<td><img src="/profitHata/images/<?=$diff_percent < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_percent, true)?></td>
 						<td><span><?=$pst_percent_2?> %</span></td>
 					</tr>
 					<tr>
 						<td>Срок ипотеки:</td>
 						<td><span><?=$pst_term_1 . ' ' . $suffix_1?></span></td>
+						<td><img src="/profitHata/images/<?=$diff_firstPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_firstPay, true)?></td>
 						<td><span><?=$pst_term_2 . ' ' . $suffix_2?></span></td>
 					</tr>
 					<tr>
 						<td>Ежемесячные траты:</td>
 						<td><span><?=zeroSpace($pst_monthSpend_1)?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_monthSpend < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_monthSpend, true)?></td>
 						<td><span><?=zeroSpace($pst_monthSpend_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Аренда жилья до ипотеки:</td>
 						<td><span><?=zeroSpace($pst_monthRent_1)?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_monthRent < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_monthRent, true)?></td>
 						<td><span><?=zeroSpace($pst_monthRent_2)?> &#8381</span></td>
 					</tr>
 					<tr>
 						<td>Текущая зарплата:</td>
 						<td><span><?=zeroSpace($pst_currentSalary_1)?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_currentSalary < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace($diff_currentSalary, true)?></td>
 						<td><span><?=zeroSpace($pst_currentSalary_2)?> &#8381</span></td>
 				</table>
 			</div>
