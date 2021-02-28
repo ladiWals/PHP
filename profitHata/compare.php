@@ -1,11 +1,15 @@
 <?php
 
+// Сравнительная характеристка
+
+// Файл хранения структуры формы
 include_once($_SERVER['DOCUMENT_ROOT'] . '/profitHata/formData.php');
 
 // Когда пришла форма
 if (isset($_POST['submit'])) {
 	extract($_POST, EXTR_PREFIX_ALL, 'pst');
 
+	// Вычисления основных характеристик кредитов по обеим программам
 	for($i = 1; $i <= 2; $i++) {
 		${'credit_' . $i} = (int) ${'pst_fullPrice_' . $i} - (int) ${'pst_firstPay_' . $i}; // Сумма кредита
 		${'monthTerm_' . $i} = (int) ${'pst_term_' . $i} * 12; // Срок кредита в месяцах
@@ -24,11 +28,14 @@ if (isset($_POST['submit'])) {
 		${'suffix_' . $i} = ((int) ${'pst_term_' . $i} % 10 == 1) ? 'год' : (in_array((int) ${'pst_term_' . $i} % 10, [2, 3, 4]) ? 'года' : 'лет');
 	}
 
+	// Вычисления разниц начальных данных
 	foreach($formList as $item) {
 		${'diff_' . $item['name']} = ${'pst_' . $item['name'] . '_2'} - ${'pst_' . $item['name'] . '_1'};
 	}
 }
 
+
+// Функция для добавления отступов между тысячами
 function zeroSpace($number, $signed = false) 
 {
 	$explodedNum = '';
@@ -43,6 +50,7 @@ function zeroSpace($number, $signed = false)
 	return $signed ? addSign($explodedNum) : $explodedNum;
 }
 
+// Функция добавляет знак к числу
 function addSign($str) {
 	return ($str[0] !== '-') ? ('+' . $str) : ($str);
 }
@@ -67,7 +75,9 @@ function addSign($str) {
 			<table>
 
 				<?php
-				 foreach($formList as $item) { ?>
+
+				// Автоматизированный вывод формы на основе массива из подключённого файла
+				foreach($formList as $item) { ?>
 				 	<tr>
 				 		<td>
 				 			<div class="hint"><?=$item['label'] . ' 1'?></div>
@@ -78,7 +88,7 @@ function addSign($str) {
 				 			<input name="<?=$item['name'] . '_2'?>" type="text" value="<?=isset(${'pst_' . $item['name'] . '_2'}) ? ${'pst_' . $item['name'] . '_2'} : ''?>">
 				 		</td>
 				 	</tr>
-				 <?php } ?>
+				<?php } ?>
 
 			</table>
 			<input type="submit" name="submit" value="Рассчитать">
@@ -88,6 +98,8 @@ function addSign($str) {
 	</center>
 
 	<?php
+
+	// Вывод блока обработанных начальных данных 
 	if (isset($_POST['submit'])) {
 	?>
 		<h1>Введённые данные:</h1>
