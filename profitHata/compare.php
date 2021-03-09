@@ -29,8 +29,13 @@ if (isset($_POST['submit'])) {
 	}
 
 	// Вычисления разниц начальных данных
-	foreach($formList as $item) {
+	foreach ($formList as $item) {
 		${'diff_' . $item['name']} = ${'pst_' . $item['name'] . '_2'} - ${'pst_' . $item['name'] . '_1'};
+	}
+
+	// Вычисляю разницу выходных данных
+	foreach (['credit', 'monthPay', 'yearPay', 'fullPay', 'overPay', 'overPayPercent', 'minSalary', 'toFirstPayMonth'] as $item) {
+		${'diff_' . $item} = ${$item . '_2'} - ${$item . '_1'};
 	}
 }
 
@@ -156,16 +161,56 @@ function addSign($str) {
 		<h1>Результаты расчёта:</h1>
 		<center>
 			<div class="result">
-				<ul>
-					<li>Сумма кредита: <span><?=zeroSpace(round($credit))?> &#8381</span></li>
-					<li>Ежемесячный платёж: <span><?=zeroSpace(round($monthPay))?> &#8381</span></li>
-					<li>Годовой платёж: <span><?=zeroSpace(round($yearPay))?> &#8381</span></li>
-					<li>Общая выплата: <span><?=zeroSpace(round($fullPay))?> &#8381</span></li>
-					<li>Переплата по кредиту: <span><?=zeroSpace(round($overPay))?> &#8381</span></li>
-					<li>Процент переплаты: <span><?=round($overPayPercent, 1)?> %</span></li>
-					<li>Необходимая зарплата: <span><?=ceil($minSalary / 1000)?> К</span></li>
-					<li>Месяцев копить на первый взнос: <span><?=round($toFirstPayMonth, 1)?></span></li>
-				</ul>
+				<table>
+					<tr>
+						<td>Сумма кредита: </td>
+						<td><span><?=zeroSpace(round($credit_1))?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_credit < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_credit), true)?></td>
+						<td><span><?=zeroSpace(round($credit_2))?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Ежемесячный платёж: </td>
+						<td><span><?=zeroSpace(round($monthPay_1))?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_monthPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_monthPay), true)?></td>
+						<td><span><?=zeroSpace(round($monthPay_2))?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Годовой платёж: </td>
+						<td><span><?=zeroSpace(round($yearPay_1))?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_yearPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_yearPay), true)?></td>
+						<td><span><?=zeroSpace(round($yearPay_2))?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Общая выплата: </td>
+						<td><span><?=zeroSpace(round($fullPay_1))?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_fullPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_fullPay), true)?></td>
+						<td><span><?=zeroSpace(round($fullPay_2))?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Переплата по кредиту: </td>
+						<td><span><?=zeroSpace(round($overPay_1))?> &#8381</span></td>
+						<td><img src="/profitHata/images/<?=$diff_overPay < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_overPay), true)?></td>
+						<td><span><?=zeroSpace(round($overPay_2))?> &#8381</span></td>
+					</tr>
+					<tr>
+						<td>Процент переплаты: </td>
+						<td><span><?=round($overPayPercent_1, 1)?>%</span></td>
+						<td><img src="/profitHata/images/<?=$diff_overPayPercent < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_overPayPercent, 1), true)?></td>
+						<td><span><?=round($overPayPercent_2, 1)?>%</span></td>
+					</tr>
+					<tr>
+						<td>Необходимая зарплата: </td>
+						<td><span><?=ceil($minSalary_1 / 1000)?>K</span></td>
+						<td><img src="/profitHata/images/<?=$diff_minSalary < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_minSalary / 1000), true)?></td>
+						<td><span><?=ceil($minSalary_2 / 1000)?>K</span></td>
+					</tr>
+					<tr>
+						<td>Месяцев копить на первый взнос: </td>
+						<td><span><?=round($toFirstPayMonth_1, 1)?></span></td>
+						<td><img src="/profitHata/images/<?=$diff_toFirstPayMonth < 0 ? 'not_' : ''?>stonks_white.ico" width="35" height="25"> <?=zeroSpace(round($diff_toFirstPayMonth, 1), true)?></td>
+						<td><span><?=round($toFirstPayMonth_2, 1)?></span></td>
+					</tr>
+				</table>
 			</div>
 		</center>
 	<?php } ?>
